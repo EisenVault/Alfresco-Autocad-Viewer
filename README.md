@@ -8,7 +8,7 @@ This correct version can be downloaded from: <<link to be added>>
 
 2. Update the alfresco-global.properties file by adding.
 
-'''
+```
 dwg2pdf.root=/home/{user}//opt/qcad-3.17.3-trial-linux-x86_64
 content.transformer.dwg2pdf.priority=50
 content.transformer.dwg2pdf.extensions.dwg.pdf.supported=true
@@ -16,7 +16,7 @@ content.transformer.dwg2pdf.extensions.dwg.pdf.priority=50
 content.transformer.dxf2pdf.priority=50
 content.transformer.dxf2pdf.extensions.dxf.pdf.supported=true
 content.transformer.dxf2pdf.extensions.dxf.pdf.priority=50
-'''
+```
 
 # Authors & Attribution
 Written by Tushar Khanka of EisenVault (www.eisenvault.com).
