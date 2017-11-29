@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+
+<beans>
+
+	<bean id="transformer.worker.dwg2pdf"
+		class="org.alfresco.repo.content.transform.RuntimeExecutableContentTransformerWorker">
+		<property name="mimetypeService">
+			<ref bean="mimetypeService" />
+		</property>
+		<property name="checkCommand">
+			<bean name="transformer.dwg2pdf.checkCommand" class="org.alfresco.util.exec.RuntimeExec">
+				<property name="commandsAndArguments">
+					<map>
+						<entry key="Linux.*">
+							<list>
+								<value>sh</value>
+								<value>-c</value>							
+								<value>${dwg2pdf.root}/dwg2pdf -h -platform offscreen ...</value>
+							</list>	
+						</entry>				
+						<entry key="Windows.*">
+							<list>
+							    <value>cmd</value> 
+		                        <value>/C</value>							
+								<value>cd ${dwg2pdf.root} &amp;&amp; dwg2pdf -h-platform offscreen ...</value>
+							</list>
+						</entry>
+					</map>
+				</property>
+			</bean>
+		</property>
+		<property name="transformCommand">
+			<bean name="transformer.dwg2pdf.Command" class="org.alfresco.util.exec.RuntimeExec">
+				<property name="commandsAndArguments">
+					<map>
+						<entry key="Linux.*">
+							<list>
+								<value>sh</value>
+								<value>-c</value>
+								<value>${dwg2pdf.root}/dwg2pdf -platform offscreen ... -f -a -o ${target} ${source}</value>
+							</list>	
+						</entry>						
+						<entry key=".*">
+							<list>
+							    <value>cmd</value> 
+		                        <value>/C</value>							
+								<value>cd ${dwg2pdf.root} &amp;&amp; dwg2pdf -platform offscreen ... -f -a -o ${target} ${source}</value>
+							</list>
+						</entry>
+					</map>
+				</property>
+				<property name="waitForCompletion">
+					<value>true</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="transformer.dwg2pdf"
+		class="org.alfresco.repo.content.transform.ProxyContentTransformer"
+		parent="baseContentTransformer">
+		<property name="worker">
+			<ref bean="transformer.worker.dwg2pdf" />
+		</property>
+	</bean>
+
+
+	<bean id="transformer.worker.dxf2pdf"
+		class="org.alfresco.repo.content.transform.RuntimeExecutableContentTransformerWorker">
+		<property name="mimetypeService">
+			<ref bean="mimetypeService" />
+		</property>
+		<property name="checkCommand">
+			<bean name="transformer.dwg2pdf.checkCommand" class="org.alfresco.util.exec.RuntimeExec">
+				<property name="commandsAndArguments">
+					<map>
+						<entry key="Linux.*">
+							<list>
+								<value>sh</value>
+								<value>-c</value>							
+								<value>${dwg2pdf.root}/dwg2pdf -h -platform offscreen ...</value>
+							</list>	
+						</entry>				
+						<entry key="Windows.*">
+							<list>
+							    <value>cmd</value> 
+		                        <value>/C</value>							
+								<value>cd ${dwg2pdf.root} &amp;&amp; dwg2pdf -h -platform offscreen ...</value>
+							</list>
+						</entry>
+					</map>
+				</property>
+			</bean>
+		</property>
+		<property name="transformCommand">
+			<bean name="transformer.dwg2pdf.Command" class="org.alfresco.util.exec.RuntimeExec">
+				<property name="commandsAndArguments">
+					<map>
+						<entry key="Linux.*">
+							<list>
+								<value>sh</value>
+								<value>-c</value>
+								<value>${dwg2pdf.root}/dwg2pdf -platform offscreen ... -f -a -o ${target} ${source}</value>
+							</list>	
+						</entry>						
+						<entry key=".*">
+							<list>
+							    <value>cmd</value> 
+		                        <value>/C</value>							
+								<value>cd ${dwg2pdf.root} &amp;&amp; dwg2pdf -platform offscreen ... -f -a -o ${target} ${source}</value>
+							</list>
+						</entry>
+					</map>
+				</property>
+				<property name="waitForCompletion">
+					<value>true</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="transformer.dxf2pdf"
+		class="org.alfresco.repo.content.transform.ProxyContentTransformer"
+		parent="baseContentTransformer">
+		<property name="worker">
+			<ref bean="transformer.worker.dxf2pdf" />
+		</property>
+	</bean>
+</beans>
