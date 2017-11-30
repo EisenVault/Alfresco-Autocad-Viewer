@@ -4,7 +4,7 @@ This addon works with Alfresco 5.1 and 5.2. Please follow instructions below.
 For installer > 5.1 apply Autocad_server_repo.amp . and follow these steps
 1. Install the given trial package of qcad. Any version higer than this will show watermark on the document. It will get installed on /home/{user}/opt/qcad-3.17.3-trial-linux-x86_64
 
-This correct version can be downloaded from: <<link to be added>>
+This correct version can be downloaded from: https://storage.googleapis.com/eisenvault-downloads/qcad-3.17.3-trial-linux-x86_64.run
 
 2. Update the alfresco-global.properties file by adding.
 
